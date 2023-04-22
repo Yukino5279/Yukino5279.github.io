@@ -4,39 +4,18 @@
   
     
     <entry>
-      <title>数字图像学习笔记</title>
-      <link href="/2023/04/11/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-      <url>/2023/04/11/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+      <title>食用方法</title>
+      <link href="/2023/04/22/%E9%A3%9F%E7%94%A8%E6%96%B9%E6%B3%95/"/>
+      <url>/2023/04/22/%E9%A3%9F%E7%94%A8%E6%96%B9%E6%B3%95/</url>
       
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      <categories>
-          
-          <category> Python </category>
-          
-          <category> 数字图像 </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>数字图像疑难杂症</title>
-      <link href="/2023/04/11/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/"/>
-      <url>/2023/04/11/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
-      
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h1 id="GAL"><a href="#GAL" class="headerlink" title="GAL"></a>GAL</h1><h2 id="krkr"><a href="#krkr" class="headerlink" title="krkr"></a>krkr</h2><p>只需要将.dll文件和krkr.exe文件复制到游戏根目录下，再将游戏.exe文件拖入到krkr.exe即可。注:报错就试试用GARbro</p><h2 id="GARbro"><a href="#GARbro" class="headerlink" title="GARbro"></a>GARbro</h2><p>1.打开整合包，运行GARbro.GUI.exe<br><img src="https://s2.loli.net/2023/04/22/QHcOJXTvxiMmkNo.png" alt="GARbro1"><br>2.将需要解包的文件(.xp3)拖到GARbro中，或者在GARbro的菜单栏中选择：文件→打开→xxxx.xp3。<br>文件加密默认选择没有加密<br><img src="https://s2.loli.net/2023/04/22/ZQlvCPugsSh9kKE.png" alt="GARbro2"><br>3.选择需要提取的文件，右键提取就好啦<br><img src="https://s2.loli.net/2023/04/22/wOenZpydW43IvoA.png" alt="GARbro3"><br><img src="https://s2.loli.net/2023/04/22/HDW29RBxmyFSphr.png" alt="GARbro4"></p><h1 id="FPS"><a href="#FPS" class="headerlink" title="FPS"></a>FPS</h1><h2 id="CSGO"><a href="#CSGO" class="headerlink" title="CSGO"></a>CSGO</h2><p>将cfg文件放到D:\steam\userdata\xxxxxxxx\730\local\cfg<br>其中，xxxxxxxx是该账号的好友代码</p>]]></content>
       
       
       <categories>
           
-          <category> Python </category>
+          <category> Game </category>
           
-          <category> 数字图像 </category>
+          <category> 食用方法 </category>
           
       </categories>
       
@@ -67,18 +46,18 @@
     
     
     <entry>
-      <title>自然语言疑难杂症</title>
-      <link href="/2023/04/09/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/"/>
-      <url>/2023/04/09/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+      <title>数字图像学习笔记</title>
+      <link href="/2023/04/11/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+      <url>/2023/04/11/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
       
-        <content type="html"><![CDATA[<h1 id="代码问题"><a href="#代码问题" class="headerlink" title="代码问题"></a>代码问题</h1><h2 id="语法错误"><a href="#语法错误" class="headerlink" title="语法错误"></a>语法错误</h2><h1 id="编译环境问题"><a href="#编译环境问题" class="headerlink" title="编译环境问题"></a>编译环境问题</h1><h2 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h2>]]></content>
+        <content type="html"><![CDATA[]]></content>
       
       
       <categories>
           
           <category> Python </category>
           
-          <category> 自然语言 </category>
+          <category> 数字图像 </category>
           
       </categories>
       
@@ -92,7 +71,7 @@
       <link href="/2023/04/08/hexo%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"/>
       <url>/2023/04/08/hexo%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/</url>
       
-        <content type="html"><![CDATA[<h1 id="官方帮助文档"><a href="#官方帮助文档" class="headerlink" title="官方帮助文档"></a>官方帮助文档</h1><p><a href="https://markdown.com.cn/basic-syntax/">Markdown语法</a>。<br><a href="https://fontawesome.com/icons?from=io">社交图标</a>。</p><h1 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h1><p>在搭建分类页面时没有内容<br><img src="https://s2.loli.net/2023/04/11/P6auXibjVfeSzGZ.png" alt="error1"><br>原因在于没有在categories页面中指定类型和自建页面中指定分类<br><img src="https://s2.loli.net/2023/04/11/bInB2AmJyeRw8LE.png" alt="True1"><br><img src="https://s2.loli.net/2023/04/11/293cuKr8NfBnJ1W.png" alt="True2"></p>]]></content>
+        <content type="html"><![CDATA[<h1 id="官方帮助文档"><a href="#官方帮助文档" class="headerlink" title="官方帮助文档"></a>官方帮助文档</h1><p><a href="https://markdown.com.cn/basic-syntax/">Markdown语法</a>。<br><a href="https://fontawesome.com/icons?from=io">社交图标</a>。<br><a href="https://smms.app/">免费图床</a></p><h1 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h1><p>在搭建分类页面时没有内容<br><img src="https://s2.loli.net/2023/04/11/P6auXibjVfeSzGZ.png" alt="error1"><br>原因在于没有在categories页面中指定类型和自建页面中指定分类<br><img src="https://s2.loli.net/2023/04/11/bInB2AmJyeRw8LE.png" alt="True1"><br><img src="https://s2.loli.net/2023/04/11/293cuKr8NfBnJ1W.png" alt="True2"></p>]]></content>
       
       
       <categories>
