@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>Python</title>
+      <link href="/2023/05/03/Python%E5%9F%BA%E7%A1%80/"/>
+      <url>/2023/05/03/Python%E5%9F%BA%E7%A1%80/</url>
+      
+        <content type="html"><![CDATA[<h2 id="数据容器"><a href="#数据容器" class="headerlink" title="数据容器"></a>数据容器</h2><p>5种数据类型:元组(tuple),列表(list),字符串(str),字典(dict),集合(set)</p><h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><h4 id="列表的概念："><a href="#列表的概念：" class="headerlink" title="列表的概念："></a>列表的概念：</h4><p>列表是一种可变的、有序的数据结构，可以随时添加和删除其中的元素。<br>List（列表）是 Python 中使用最频繁的数据类型，在其他语言中通常叫做数组<br>专门用于存储一串信息<br>列表用[]定义，数据之间使用 , 分隔<br>列表的索引 从 0 开始</p><h4 id="列表定义方法："><a href="#列表定义方法：" class="headerlink" title="列表定义方法："></a>列表定义方法：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class 方法名字()：</span><br><span class="line">    def sum():</span><br><span class="line">        return x+y</span><br><span class="line"> </span><br><span class="line">#### 调用方法:</span><br><span class="line"></span><br><span class="line">a=方法名字()</span><br><span class="line">x=a.sum(1,5)</span><br><span class="line">print(f&quot;和为&#123;x&#125;&quot;)</span><br></pre></td></tr></table></figure><p>函数与方法的差别就在于定义和调用不同</p><h4 id="常用的方法"><a href="#常用的方法" class="headerlink" title="常用的方法:"></a>常用的方法:</h4><details><summary>列表</summary><p><strong>插入元素</strong><br><code>列表名.insert(下标值,元素)</code></p><p><strong>追加元素</strong><br><code>列表名.append(元素)</code></p><p><strong>追加批量元素</strong><br><code>列表名.extend(容器名)</code></p><p><strong>删除元素</strong><br><code>del 列表名[下标值]</code></p><p><strong>删除指定元素</strong><br><code>列表名.remove(元素)</code></p><p><strong>剪切元素(不设定接收值就只是删除元素)</strong><br><code>列表名.pop(下标值)</code></p><p><strong>清空列表</strong><br><code>列表名.clear()</code></p><p><strong>统计列表特定的元素</strong><br><code>列表名.count(元素)</code></p><p><strong>查找指定元素所在的下标,找不到就报错ValueError</strong><br><code>列表.index(元素)</code></p><p><strong>统计列表有多少元素(查看列表长度)</strong><br><code>Listlen=len(列表名) </code></p></details><h3 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h3><h4 id="元组的概念"><a href="#元组的概念" class="headerlink" title="元组的概念:"></a>元组的概念:</h4><p>一旦定义完成就不可修改。<br>定义用()，使用,隔开各个数据。<br>注：如果元组中只有单个元素，需要在元素后面加一个逗号<br><code>tuple_1=(&quot;hello&quot;,)</code></p><h4 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h4><details><summary>元组</summary><p><strong>查找指定元素的下标</strong><br><code>元组名.index(&quot;指定元素&quot;)</code></p><p><strong>统计指定元素有几个</strong><br><code>元组名.count(&quot;指定元素&quot;)</code></p><p><strong>统计元素个数</strong><br><code>tuplelen=len()</code></p></details>]]></content>
+      
+      
+      <categories>
+          
+          <category> Python </category>
+          
+          <category> 基础语法 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>食用方法</title>
       <link href="/2023/04/22/%E9%A3%9F%E7%94%A8%E6%96%B9%E6%B3%95/"/>
       <url>/2023/04/22/%E9%A3%9F%E7%94%A8%E6%96%B9%E6%B3%95/</url>
@@ -25,39 +46,18 @@
     
     
     <entry>
-      <title>数字图像学习笔记</title>
-      <link href="/2023/04/11/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-      <url>/2023/04/11/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+      <title>机器学习笔记</title>
+      <link href="/2023/04/11/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+      <url>/2023/04/11/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
       
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      <categories>
-          
-          <category> Python </category>
-          
-          <category> 数字图像 </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>自然语言学习笔记</title>
-      <link href="/2023/04/11/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-      <url>/2023/04/11/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-      
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p>##决策树（if-elif）<br>高效进行决策：确定特征的先后顺序<br>##信息论基础<br>信息：消除随机不定性的东西<br>#信息的 </p>]]></content>
       
       
       <categories>
           
           <category> Python </category>
           
-          <category> 自然语言 </category>
+          <category> 机器学习 </category>
           
       </categories>
       
