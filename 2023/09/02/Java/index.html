@@ -1,0 +1,475 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>JavaSE笔记 | Yukino</title><meta name="author" content="L"><meta name="copyright" content="L"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="重要java的项目结构1.project(项目)    2.module（模块）        3.package（包）            4.class(类) 快捷键Alt+INSERT	生成方法 Ctrl+R		替换 Ctrl+N      	搜索类库 Ctrl+F12    	搜索方法 Ctrl+O      	重写OBJ方法 Ctrl+E      	打开最近文件 Ctrl+D">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaSE笔记">
+<meta property="og:url" content="http://www.yukinoshita.love/2023/09/02/Java/index.html">
+<meta property="og:site_name" content="Yukino">
+<meta property="og:description" content="重要java的项目结构1.project(项目)    2.module（模块）        3.package（包）            4.class(类) 快捷键Alt+INSERT	生成方法 Ctrl+R		替换 Ctrl+N      	搜索类库 Ctrl+F12    	搜索方法 Ctrl+O      	重写OBJ方法 Ctrl+E      	打开最近文件 Ctrl+D">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/04/08/DiUZoJGuthCc4xf.jpg">
+<meta property="article:published_time" content="2023-09-02T07:56:00.000Z">
+<meta property="article:modified_time" content="2023-12-14T16:15:11.444Z">
+<meta property="article:author" content="L">
+<meta property="article:tag" content="test">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/04/08/DiUZoJGuthCc4xf.jpg"><link rel="shortcut icon" href="https://s2.loli.net/2023/04/08/AfbC2FMBjE71JPT.jpg"><link rel="canonical" href="http://www.yukinoshita.love/2023/09/02/Java/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-right"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'JavaSE笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-15 00:15:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="../../css/custom.css" media="defer" onload="this.media='all'"> <link rel="stylesheet" href="../../css/universe.css"> <link rel="stylesheet" href="../../css/cat.css"><div id="myscoll"></div><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><link rel="stylesheet" href="https://codebyzach.github.io/pace/"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/04/08/RS3KNP2x7T5fBup.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 常用工具</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2023/04/08/DiUZoJGuthCc4xf.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Yukino"><span class="site-name">Yukino</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 常用工具</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JavaSE笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-02T07:56:00.000Z" title="发表于 2023-09-02 15:56:00">2023-09-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-14T16:15:11.444Z" title="更新于 2023-12-15 00:15:11">2023-12-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/">Java</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/JavaSE/">JavaSE</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JavaSE笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="重要"><a href="#重要" class="headerlink" title="重要"></a>重要</h1><h2 id="java的项目结构"><a href="#java的项目结构" class="headerlink" title="java的项目结构"></a>java的项目结构</h2><p>1.project(项目)<br>    2.module（模块）<br>        3.package（包）<br>            4.class(类)</p>
+<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><p>Alt+INSERT	生成方法</p>
+<p>Ctrl+R		替换</p>
+<p>Ctrl+N      	搜索类库</p>
+<p>Ctrl+F12    	搜索方法</p>
+<p>Ctrl+O      	重写OBJ方法</p>
+<p>Ctrl+E      	打开最近文件</p>
+<p>Ctrl+D	      复制选定的这行</p>
+<p>Alt+Enter	 错误提示</p>
+<p>Ctrl+Alt+U	看继承结构</p>
+<p>Ctrl+Alt+T	包围</p>
+<p>Ctrl+Alt+L	格式化代码</p>
+<p>Ctrl+Alt+B	上级接口</p>
+<p>Ctrl + Shift + 方向键	移动代码位置</p>
+<h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h2 id="一、基础语法"><a href="#一、基础语法" class="headerlink" title="一、基础语法"></a>一、基础语法</h2><h3 id="0-构造方法、重载、继承"><a href="#0-构造方法、重载、继承" class="headerlink" title="0.构造方法、重载、继承"></a>0.构造方法、重载、继承</h3><p>Java只有单继承，和多层继承(子类A继承父类B，父类B又继承父类C)<br>eg: public class 子类 extends 父类{</p>
+<p>}</p>
+<p><strong>构造方法的名称跟类名完全一致，没有返回值。</strong><br>继承中的  super.的作用是到父类调用<br>          this的作用有3个：<br>            1、区分成员变量和局部变量<br>            2、this表示正在创建的对象本身或者正在执行方法的对象本身。<br>            3、在构造方法中可以调用别的构造方法，需要注意的是如果调用其他的构造方法，this只能写在第一行</p>
+<p>重载是在同一类中更改方法的参数、个数不同（同一件事情不同方法）。<br>子类出现了和父类中一模一样的方法声明，我们就称子类的这个方法是父类方法的重写（@Override → 效验重写是否正确）。</p>
+<p>子类初始化之前，一定要调用父类构造方法先完成父类数据空间的初始化。</p>
+<h3 id="1-递归"><a href="#1-递归" class="headerlink" title="1.递归"></a>1.递归</h3><p><strong>方法递归，需要有结束条件</strong></p>
+<p>eg:day3_Demo。</p>
+<p>封装是为了数据安全，想要使用数据需要按照正确的渠道（set和get方法）</p>
+<p>静态代码块(又叫类方法)：在使用这个类的时候会发出唯一一次调用，常用于类的初始化（只要代码块中有静态代码（static）就会执行）</p>
+<p>静态和类相关 （每个对象都有的属性）</p>
+<p>非静态是和对象相关子继承父，父不能继承子（子可以用父的方法，父不能用子的方法）</p>
+<p>final  修饰符:一旦获得初始值就不能改变（常量）,修饰方法就不可重写</p>
+<h3 id="2-Object"><a href="#2-Object" class="headerlink" title="2.Object"></a>2.Object</h3><p>Java中除了 基本数据类型（8种,如:int,String）就是 引用数据类型<br>而 数据类型 &#x3D;&#x3D;比较的是值，引用数据类型 &#x3D;&#x3D;比较的是内存地址。<br>    除了一些特殊的类之外，主要看equals方法有没有被覆写<br>    equals的3个特性<br>        1.对称性<br>        2.自反性<br>        3.传递性</p>
+<h3 id="3-多态"><a href="#3-多态" class="headerlink" title="3.多态"></a>3.多态</h3><p>​    1.是继承关系（父子关系）<br>​    2.子类覆写父类的方法<br>​    3.父类引用，指向子类实例对象<br>​    4.调用的方法必须是父类被覆写的方法<br>虽然是同一种引用（父类），做同一样事情，但是出现了不同的结果。（这就是多态）<br>​    向上转型安全，向下转型需要借助 ( A（父类） instanceof B（子类） ) 可以判断左边<strong><strong><strong><strong>父类对象A</strong></strong></strong></strong>是否属于右边<strong>B类</strong>或者子类的一个实例</p>
+<h3 id="4-抽象类（修饰符-abstract）"><a href="#4-抽象类（修饰符-abstract）" class="headerlink" title="4.抽象类（修饰符 abstract）"></a>4.抽象类（修饰符 abstract）</h3><p>​    意义：抽象类是为了定义抽象方法，而抽象方法是为了强制子类覆写父类的抽象方法<br>​    抽象方法只能定义在接口和抽象类中。<br>​    1.实现多态更容易<br>​    2.不可调用构造函数创建实例对象<br>​    3.注：子类实例化过程中，首先要 调用 父类的构造函数（这里只是调用而没有创建实例对象）<br>​    </p>
+<h3 id="5-接口类"><a href="#5-接口类" class="headerlink" title="5.接口类"></a>5.接口类</h3><p>eg：Study_5_Jiekou</p>
+<p>​    </p>
+<p>​    <strong>接口继承的话会继承父类所有方法，所以子类继承的话需要覆写所有方法</strong><br><strong>​    接口不能直接有实例对象，必须先有类实现之后，才能创建这个实现类实例对象</strong>。<br>​    </p>
+<h5 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h5><h6 id="类继承-接口多实现"><a href="#类继承-接口多实现" class="headerlink" title="类继承+接口多实现"></a>类继承+接口多实现</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> class 子接口<span class="number">3</span> extends 类<span class="number">1</span> implements 父接口<span class="number">1</span>，父接口<span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="接口继承"><a href="#接口继承" class="headerlink" title="接口继承"></a>接口继承</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> interface 子接口 extends 父接口</span><br></pre></td></tr></table></figure>
+
+<h6 id="成员变量（常量）"><a href="#成员变量（常量）" class="headerlink" title="成员变量（常量）"></a>成员变量（常量）</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">public</span>] [<span class="keyword">static</span>] [<span class="keyword">final</span>] <span class="type">int</span> CONST=<span class="number">12</span>;</span><br></pre></td></tr></table></figure>
+
+<h6 id="抽象方法"><a href="#抽象方法" class="headerlink" title="抽象方法"></a>抽象方法</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">public</span>] [<span class="keyword">abstract</span>] <span class="keyword">void</span> <span class="title function_">methodAbs1</span><span class="params">()</span>; </span><br></pre></td></tr></table></figure>
+
+<h6 id="默认方法"><a href="#默认方法" class="headerlink" title="默认方法"></a>默认方法</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">public</span>] <span class="keyword">default</span> <span class="keyword">void</span> <span class="title function_">methodDefult1</span><span class="params">()</span>&#123; <span class="comment">//默认方法  不需要实现</span></span><br><span class="line">        System.out.println(<span class="string">&quot;这是Jiekou2中的默认方法1&quot;</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h6><p>注：使用方法是：接口名.静态方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">public</span>] <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">methodStatic</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">int</span> i=<span class="number">1</span>;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是第&quot;</span>+(i++)+<span class="string">&quot;次调用接口3中的静态方法&quot;</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="私有方法"><a href="#私有方法" class="headerlink" title="私有方法"></a>私有方法</h6><p>注：只能在java9及以上版本使用</p>
+<p>private方法只有接口本身能调用，不能被实现类或者别人使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">methodprivate</span><span class="params">()</span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;name:&quot;</span>);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="接口小结"><a href="#接口小结" class="headerlink" title="接口小结"></a>接口小结</h5><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/%5Cimg%5Cimage-20231009111917787.png" alt="image-20231009111917787"></p>
+<h4 id="注解详解"><a href="#注解详解" class="headerlink" title="注解详解"></a><a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/java-annotation.html">注解详解</a></h4><p>注解（Annotation）：一种约束。</p>
+<p>常见的注解：</p>
+<p>​	Override  ：重写的注解</p>
+<p>​	Deprecated :不推荐使用，但可以用，或者存在更好的方式</p>
+<p>​	SuppressWarnings（“all”）:	镇压警告</p>
+<p>4个元注解：</p>
+<p>​	eg:Study_3</p>
+<h3 id="6-枚举类"><a href="#6-枚举类" class="headerlink" title="6.枚举类"></a>6.枚举类</h3><p>​    1.根据步骤定义实例对象个数<br>​    2.定义所需成员变量<br>​    3.定义对应有参构造，赋值给成员变量<br>​    4.为成员提供get方法</p>
+<h3 id="7-数组"><a href="#7-数组" class="headerlink" title="7.数组"></a>7.数组</h3><p>​    1.数组的定义、<br>​    2.Arrays类<br>​    3.查找算法<br>​    4.可变数组（可选）<br>​    5.二维数组</p>
+<h3 id="8-异常"><a href="#8-异常" class="headerlink" title="8.异常"></a>8.异常</h3><h4 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h4><p>​    1.栈溢出(Stack overflow）</p>
+<h4 id="运行时异常"><a href="#运行时异常" class="headerlink" title="运行时异常"></a>运行时异常</h4><p>​    1.空指针异常(NPE)<br>​    2.下标越界异常（AIOOB）<br>​    3.转换异常（CCEC）<br>​    4.数字格式化异常（NFE）<br>​    5.算术异常（AE）</p>
+<h4 id="非运行时异常（预期异常）"><a href="#非运行时异常（预期异常）" class="headerlink" title="非运行时异常（预期异常）"></a>非运行时异常（预期异常）</h4><p>​    1.文件异常，通常是文件在磁盘中没有被发现（FNFE）<br>​    2.文件异常，通常是class文件找不到了（CNFE）<br>​    3.SQL异常,(SQLException)<br>​    4.类中没有成员异常(NSFE)，类中没有方法异常(NSME)<br>​    5.解析异常,通常是日期字符串转换解析为Date日期类。(PE)</p>
+<h3 id="9-处理异常"><a href="#9-处理异常" class="headerlink" title="9.处理异常"></a>9.处理异常</h3><p>​    1.try catch来捕获<br>​    2. 继续往调用这个方法的方法上抛出去，自己不处理，交给调用这个方法的地方处理（甩锅）<br>throws: 声明在方法上，表示这个方法需要处理异常<br>throw:  表示在代码中，主动抛出异常。</p>
+<h3 id="10-内部类"><a href="#10-内部类" class="headerlink" title="10.内部类"></a>10.内部类</h3><p>静态：只能定义在外部类属性和方法同级的位置<br>非静态：定义在外部类属性和方法同级的位置，同时还能定义在方法内部。</p>
+<h4 id="内部类创建实例对象与使用"><a href="#内部类创建实例对象与使用" class="headerlink" title="内部类创建实例对象与使用"></a>内部类创建实例对象与使用</h4><p>​    1.静态类:外部类名称.内部类名称<br>​    2.非静态类：必须得有外部类的实例对象，通过外部对象实现内部对象<br>​    3.方法：只能在该方法中使用定义的内部类。</p>
+<h3 id="11-设计模式"><a href="#11-设计模式" class="headerlink" title="11.设计模式"></a>11.设计模式</h3><h4 id="单例模式（一个类只有一个实例）"><a href="#单例模式（一个类只有一个实例）" class="headerlink" title="单例模式（一个类只有一个实例）"></a>单例模式（一个类只有一个实例）</h4><p>1.构造函数私有化<br>2.暴露一个静态方法给外部来获取唯一的实例对象<br>3.只能有唯一一个实例。<br>常见的2种模式：<br>    1、饿汉式（开始就创建实例对象。特点是：线程安全，易浪费内存，执行效率高）<br>    2、懒汉式（要使用时，再创建实例对象。特点是：线程不安全，内存不易浪费，执行效率是：加上安全方法低）<br>    还有，枚举（函数体只有一个对象）,</p>
+<h4 id="工厂设计模式"><a href="#工厂设计模式" class="headerlink" title="工厂设计模式"></a>工厂设计模式</h4><p>eg：Study_8</p>
+<p>根据需求返回需要的对象，而不是new。这样是为了减少代码的耦合度。</p>
+<h2 id="二、基本类型的包装类和String"><a href="#二、基本类型的包装类和String" class="headerlink" title="二、基本类型的包装类和String"></a>二、基本类型的包装类和String</h2><h3 id="1-包装类"><a href="#1-包装类" class="headerlink" title="1.包装类"></a>1.包装类</h3><p>eg：study_9</p>
+<p>​    1.int和char的包装类是Integer和Character,其余都是改为首字母大写<br>​    2.包装类可以调用方法。<br>​    3.包装整数型的值可以为null<br>String不能直接转为char，需要调用charAt方法<br>String中存在不能表示的数值字符时会 NFE异常,<br>字符串转布尔型时；只有true结果才为true，其余都是false。</p>
+<h3 id="2-String"><a href="#2-String" class="headerlink" title="2.String"></a>2.String</h3><p>eg：study_10.Demo</p>
+<p>​    出现过的字符就会被加入常量池<br>​    intern方法：先在常量池中引用，没有就堆中引用，并且把堆的内容添加到常量池。</p>
+<p>​    </p>
+<h3 id="3-StringBuffer和StringBuilder"><a href="#3-StringBuffer和StringBuilder" class="headerlink" title="3.StringBuffer和StringBuilder"></a>3.StringBuffer和StringBuilder</h3><p>eg: Study_11</p>
+<h4 id="StringBuffer"><a href="#StringBuffer" class="headerlink" title="StringBuffer"></a>StringBuffer</h4><p>​	容器类</p>
+<p>​	作为成员变量使用</p>
+<p>​	线程安全，但性能第二。          </p>
+<h4 id="StringBuilder"><a href="#StringBuilder" class="headerlink" title="StringBuilder"></a>StringBuilder</h4><p>​	作为局部变量使用</p>
+<p>​	线程不安全，但性能最高<br>性能：  String&lt;StringBuffer&lt;StringBuilder</p>
+<h3 id="4-正则表达式"><a href="#4-正则表达式" class="headerlink" title="4.正则表达式"></a>4.正则表达式</h3><p>​    Pattern:返回字符串形式<br>​    Matcher:匹配表达式（验证表达式）</p>
+<h2 id="三、开发常用类"><a href="#三、开发常用类" class="headerlink" title="三、开发常用类"></a>三、开发常用类</h2><p>​    1.Date类<br>​    2.Calendar类<br>​    3.SimpleDateFormat类<br>​    4.Math数学类<br>​    5.Random类<br>​    6.Runtime和System类<br>​    7.BigDecimal类<br>​            setScale<br>​            ROUND_UP            最后一位大于0就进一位   3.1-&gt;4<br>​            ROUND_DOWN          去掉超出0的部分         3.0-&gt;3<br>​            ROUND_HALF_UP       四舍五入                3.5-&gt;4<br>​            ROUND_HALF_DOWN     &lt;&#x3D;0.5就舍去，大于0.5进1  3.5-&gt;3<br>eg：study_class</p>
+<h2 id="四、集合和集合框架"><a href="#四、集合和集合框架" class="headerlink" title="四、集合和集合框架"></a>四、集合和集合框架</h2><h3 id="1-集合"><a href="#1-集合" class="headerlink" title="1.集合"></a>1.集合</h3><p>集合是个容器，和数组一样，区别在于集合长度不定</p>
+<h4 id="集合的框架结构图"><a href="#集合的框架结构图" class="headerlink" title="集合的框架结构图"></a>集合的框架结构图</h4><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/%5Cimg%5Cimage-20230913081946096.png" alt="image-20230913081946096"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/%5Cimg%5Cimage-20230913172039102.png" alt="image-20230913172039102"></p>
+<h3 id="2-泛型"><a href="#2-泛型" class="headerlink" title="2.泛型"></a>2.泛型</h3><p>​	声明方式 :class Demo <T>{}</p>
+<p>​	注：尖括号内用大写字母</p>
+<h4 id="1-泛型的3个声明方式"><a href="#1-泛型的3个声明方式" class="headerlink" title="1.泛型的3个声明方式"></a>1.泛型的3个声明方式</h4><p>​		eg:Study_13</p>
+<p>​		1.接口泛型</p>
+<p>​		2.方法泛型</p>
+<p>​		3.类泛型</p>
+<h4 id="2-受限泛型"><a href="#2-受限泛型" class="headerlink" title="2.受限泛型"></a>2.受限泛型</h4><p>​		eg:Study_13_FanXing_ShouXian</p>
+<h4 id="3-Arraylist"><a href="#3-Arraylist" class="headerlink" title="3.Arraylist"></a>3.Arraylist</h4><p>​		ArrayList底层数据结构采用数组结构</p>
+<p>​		主要用于查询！！！</p>
+<p>​		数组特点：删除（插入）数据时会移动内存中的位置，如果数据很大，会影响程序的性能。</p>
+<ul>
+<li>​        <strong>E</strong> - Element (在集合中使用，因为集合中存放的是元素)<ul>
+<li><strong>T</strong> - Type（Java 类）</li>
+<li><strong>K</strong> - Key（键）</li>
+<li><strong>V</strong> - Value（值）</li>
+<li><strong>N</strong> - Number（数值类型）</li>
+<li><strong>？</strong> - 表示不确定的 java 类型</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-LinkedList"><a href="#4-LinkedList" class="headerlink" title="4.LinkedList"></a>4.LinkedList</h4><p>eg：Study_14.Demo3</p>
+<p>​		LinkedList底层数据接口采用链表结构</p>
+<p>​		主要用于删除插入数据！！！</p>
+<p>​		链表特点：删除（插入）时只需修改上（prev）下（next）指针，不需要移动数据</p>
+<h5 id="1-队列和栈"><a href="#1-队列和栈" class="headerlink" title="1.队列和栈"></a>1.队列和栈</h5><p>​			队列：先入先出</p>
+<p>​			栈：先入后出</p>
+<p>​				1.调用方法叫入栈，调用完毕叫出栈，栈里面叫栈帧，</p>
+<p>LinkedList和ArrayList都是常用的接口实现类</p>
+<h2 id="五、Map和Set接口及其实现类"><a href="#五、Map和Set接口及其实现类" class="headerlink" title="五、Map和Set接口及其实现类"></a>五、Map和Set接口及其实现类</h2><h3 id="1-Map接口和其实现类"><a href="#1-Map接口和其实现类" class="headerlink" title="1.Map接口和其实现类"></a>1.Map接口和其实现类</h3><p>eg:Study_15</p>
+<p>​	1.hashMap：键值对(key:value),线程不安全。</p>
+<p>​	2.hashTable: 与hashMap唯一的区别是线程安全</p>
+<p>​	3.LinkHashMap: 按照存储的顺序将数据有序的存入Map中</p>
+<p>​	4.TreeMap: 按照key 的自然排序来顺序存储</p>
+<h3 id="2-Set接口和实现类"><a href="#2-Set接口和实现类" class="headerlink" title="2.Set接口和实现类"></a>2.Set接口和实现类</h3><p>eg:Study_15_Set_jiekou</p>
+<h4 id="1-LinkHashSet"><a href="#1-LinkHashSet" class="headerlink" title="1.LinkHashSet"></a>1.LinkHashSet</h4><p>​	Set利用Map的特性，存入相同元素的值，值不会重复。(集合)</p>
+<p>​	应用场景:不需要存储相同的元素。 </p>
+<h4 id="2-TrreSet"><a href="#2-TrreSet" class="headerlink" title="2.TrreSet"></a>2.TrreSet</h4><p>​	自然顺序存储 </p>
+<p>​	是SortedSet的实现类 </p>
+<h3 id="3-Conllections工具类-不是Conllection接口！！"><a href="#3-Conllections工具类-不是Conllection接口！！" class="headerlink" title="3.Conllections工具类(不是Conllection接口！！)"></a>3.Conllections工具类(不是Conllection接口！！)</h3><p>eg:Study_15_Set_jiekou_Conllections</p>
+<p>​	主要功能：</p>
+<p>​	1.排序操作(sort)</p>
+<p>​	2.反转（reverse）</p>
+<p>​	3.快速创建单个元素的Set\List、Map等</p>
+<p>​	4.添加(addAll)</p>
+<p>​	4.将不安全的集合变为安全的。</p>
+<h2 id="六、文件和字符字节流"><a href="#六、文件和字符字节流" class="headerlink" title="六、文件和字符字节流"></a>六、文件和字符字节流</h2><p>eg:Study_16_IO</p>
+<h3 id="1-IO-InputStream"><a href="#1-IO-InputStream" class="headerlink" title="1.IO(InputStream)"></a>1.IO(InputStream)</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/%5Cimg%5Cimage-20230916150838551.png" alt="image-20230916150838551"></p>
+<p>​	2.文件方法</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/%5Cimg%5Cimage-20230916205309004.png" alt="image-20230916205309004"></p>
+<h4 id="1-字节输入-出-流"><a href="#1-字节输入-出-流" class="headerlink" title="1.字节输入(出)流"></a>1.字节输入(出)流</h4><p>eg: Input和Output</p>
+<p>字节<em>输入流</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FileOutputStream fileOutputStream = new FileOutputStream(路径)</span><br></pre></td></tr></table></figure>
+
+<p>字节<em>输出流</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FileInputStream fileInputStream = new FileInputStream(路径);</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-字符输入-出-流"><a href="#2-字符输入-出-流" class="headerlink" title="2.字符输入(出)流"></a>2.字符输入(出)流</h4><p>eg: Writer和Read</p>
+<p>因为是字符，所以只能处理文本，<strong>不能处理图像音频</strong></p>
+<p>字符输入流</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FileWriter file = new FileWriter</span><br></pre></td></tr></table></figure>
+
+<p>字符输出流</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FileReader reader = new FileReader</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-转换流和缓存流和对象流（IO流框架底层原理）重要"><a href="#2-转换流和缓存流和对象流（IO流框架底层原理）重要" class="headerlink" title="2.转换流和缓存流和对象流（IO流框架底层原理）重要"></a>2.转换流和缓存流和对象流（IO流框架底层原理）重要</h3><p>eg:Study_16_IO_Tanrsfrom</p>
+<h3 id="1-缓存流"><a href="#1-缓存流" class="headerlink" title="1.缓存流"></a>1.缓存流</h3><p>eg：BufferedInputStream</p>
+<p>通过缓冲区书写，减少内存跟磁盘的IO次数提升性能</p>
+<h4 id="1-字节缓存输入（出）流"><a href="#1-字节缓存输入（出）流" class="headerlink" title="1.字节缓存输入（出）流"></a>1.字节缓存输入（出）流</h4><p>​	eg：Demo1和Demo2</p>
+<p>​		输入</p>
+<p>​		BufferedInputStream bufferedInputStream &#x3D; new BufferedInputStream(Files.newInputStream(Paths.get(路径)));</p>
+<p>​		输出</p>
+<p>​		BufferedOutputStream bufferedOutputStream &#x3D; new BufferedOutputStream(new FileOutputStream(路径));</p>
+<h4 id="2-字符缓存输入（出）流"><a href="#2-字符缓存输入（出）流" class="headerlink" title="2.字符缓存输入（出）流"></a>2.字符缓存输入（出）流</h4><p>​	eg:Demo3和Demo4</p>
+<p>​		只读</p>
+<p>​		BufferedReader bufferedReader &#x3D; new BufferedReader(new FileReader(路径))</p>
+<p>​		写入</p>
+<p>​		BufferedWriter bufferedWriter &#x3D; new BufferedWriter(new FileWriter（路径）)</p>
+<h3 id="2-内存流"><a href="#2-内存流" class="headerlink" title="2.内存流"></a>2.内存流</h3><p>​	ByteArrayInputStream</p>
+<p>​	temp; &#x2F;&#x2F;字符变大写</p>
+<p>​	.toLowerCase(); &#x2F;&#x2F;字符变成小写</p>
+<h3 id="3-Scanner扫描工具和打印流（重要）"><a href="#3-Scanner扫描工具和打印流（重要）" class="headerlink" title="3.Scanner扫描工具和打印流（重要）"></a>3.Scanner扫描工具和打印流（重要）</h3><p>eg:L4_Scaner	</p>
+<p>​		eg:Demo1</p>
+<p>​		Scanner(Readable source):所有Reader的实现类都可以传进来</p>
+<p>​		public Scanner(InputStream source)：所有输入流都可以传进来构造</p>
+<p>​		public Scanner (File source): 直接读取文件。		</p>
+<p>​	结论:</p>
+<p>​		读取操作可以用Scanner来做，处理I流特别方便</p>
+<p>​		创建:</p>
+<p>​		Scanner scanner &#x3D; new Scanner(new File(路径));</p>
+<h3 id="4-对象流"><a href="#4-对象流" class="headerlink" title="4.对象流"></a>4.对象流</h3><p>eg:objectStream</p>
+<p>把对象保存到磁盘的过程，就叫做序列化过程。</p>
+<h5 id="1-序列化"><a href="#1-序列化" class="headerlink" title="1.序列化"></a>1.序列化</h5><p>序列化最终的目的是为了对象可以<strong>跨平台存储，和进行网络传输</strong>。</p>
+<p>只把对象转成字节数组还不行，因为没有规则的字节数组我们是没办法把对象的本来面目还原回来的，所以我们必须在把对象转成字节数组的时候就制定一种规则<strong>（序列化）</strong>，那么我们从IO流里面读出数据的时候再以这种规则把对象还原回来<strong>（反序列化）。</strong></p>
+<p>如果我们要把一栋房子从一个地方运输到另一个地方去，<strong>序列化</strong>就是我把房子拆成一个个的砖块放到车子里，然后留下一张房子原来结构的图纸，<strong>反序列化</strong>就是我们把房子运输到了目的地以后，根据图纸把一块块砖头还原成房子原来面目的过程</p>
+<p>结论：以后简单java类如果需要再网络上传输，存储到磁盘，都需要实现序列化（Serializable）接口。</p>
+<h3 id="5-RandoRandomAccessFile-了解断点续传"><a href="#5-RandoRandomAccessFile-了解断点续传" class="headerlink" title="5.RandoRandomAccessFile(了解断点续传)"></a>5.RandoRandomAccessFile(了解断点续传)</h3><p>略</p>
+<h3 id="6-Properties设计模式"><a href="#6-Properties设计模式" class="headerlink" title="6.Properties设计模式"></a>6.Properties设计模式</h3><p>略</p>
+<h2 id="七、多线程基础"><a href="#七、多线程基础" class="headerlink" title="七、多线程基础"></a>七、多线程基础</h2><p>eg：Study_17_DuoXxianCheng</p>
+<h3 id="1-进程与线程"><a href="#1-进程与线程" class="headerlink" title="1.进程与线程"></a>1.进程与线程</h3><h4 id="1-进程"><a href="#1-进程" class="headerlink" title="1.进程"></a>1.进程</h4><p>​	<strong>进程特点</strong>：</p>
+<p>​		1.独立性：不同的进程之间是独立的，相互的资源不共享</p>
+<p>​		2.动态性：进程在系统中不是静止不动的，而是在系统中一直活动</p>
+<p>​		3.并发性：多个进程可以在单个处理器上同时进行，且互不影响</p>
+<h4 id="2-线程"><a href="#2-线程" class="headerlink" title="2.线程"></a>2.线程</h4><p>​	多并发：其实就是CPU快速的在不同线程之间切换</p>
+<p>​	<strong>区别</strong>：	</p>
+<p>​	程序运行后至少有一个进程</p>
+<p>​	一个进程至少要有一个线程，否则这个线程没有意义</p>
+<p>​	进程之间不能共享资源，但线程可以</p>
+<p>​	系统创建进程需要为该进程重新分配系统资源，而创建线程容易的多，因此使用线程实现多任务并发比多进程的效率高</p>
+<p>​	start()启动；</p>
+<h4 id="3-创建线程的4种方式"><a href="#3-创建线程的4种方式" class="headerlink" title="3.创建线程的4种方式"></a>3.创建线程的4种方式</h4><p>​		1.创建一个类继承Thread类，覆写run方法，调用start方法</p>
+<p>​		2.直接new 一个Thread类，传入Runnable接口的实例对象，覆写run方法，调用Thread类的start方法	（常用）</p>
+<p>​		3.利用FutureTask与Callable搭配创建。这种方法创建的支持返回值 （要返回值的时候用）</p>
+<p>​		4.线程池（严格上说不算）</p>
+<p>启动线程之后至少有2个线程：Main线程(主线程)和后台线程（后台线程）</p>
+<h4 id="4-线程的中断"><a href="#4-线程的中断" class="headerlink" title="4.线程的中断"></a>4.线程的中断</h4><p>中断标记的位置一定要设置在线程启动之后</p>
+<p>中断方法不是真中断，只是设置一个中断的标记为true ，遇到wait&#x2F;sleep&#x2F;join就会抛出中断异常</p>
+<p>抛出异常后，自行使用return结束线程，以达到中断效果。</p>
+<h4 id="面试的考点："><a href="#面试的考点：" class="headerlink" title="面试的考点："></a>面试的考点：</h4><p>（Thread.State;这个内部枚举中，列举了6个生命状态）</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/%5Cimg%5Cimage-20230918210642506.png" alt="image-20230918210642506"></p>
+<p>1.需要清楚进程与线程的区别。</p>
+<p>2.需要清楚的知道创建多线程的三种方式和区别。。后面再详细深入的学习线程池</p>
+<p>3.需要掌握线程中的常用方法。</p>
+<p>4.需要记下线程的6个生命周期状态。</p>
+<h3 id="2-多线程同步"><a href="#2-多线程同步" class="headerlink" title="2.多线程同步"></a>2.多线程同步</h3><h2 id="八、反射"><a href="#八、反射" class="headerlink" title="八、反射"></a>八、反射</h2><p>eg：Study_18_FanShe</p>
+<h4 id="语言的两种形态"><a href="#语言的两种形态" class="headerlink" title="语言的两种形态"></a>语言的两种形态</h4><p>​	1.动态语言（运行时可以改变）</p>
+<p>​	2.静态语言（运行时不能改变）</p>
+<p>Reflection（反射）是java被视为动态语言的关键</p>
+<p>​	优点：实现动态创建对象和编译，灵活性大大提升</p>
+<p>​	缺点：对性能有影响，反射基本上是一种解释操作，我们告诉JVM做什么并且满足我们要求。</p>
+<p>​	   	 这类操作总是慢于直接执行相同的操作。</p>
+<h4 id="类与反射："><a href="#类与反射：" class="headerlink" title="类与反射："></a>类与反射：</h4><p>一个类在内存中只有一个Class对象</p>
+<p>一个类被加载之后，类的整个结构都会被封装在Class对象中。</p>
+<p>反射就是通过对象来逆出一个类</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/%5Cimg%5Cimage-20230921121820687.png" alt="image-20230921121820687"></p>
+<p>加载，链接，初始化</p>
+<h4 id="代码使用："><a href="#代码使用：" class="headerlink" title="代码使用："></a>代码使用：</h4><h5 id="反射的三种创建方式"><a href="#反射的三种创建方式" class="headerlink" title="反射的三种创建方式"></a>反射的三种创建方式</h5><p>eg：Study_18_FanShe\HeiMaPro\FanShe\FanShe1.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取Class字节码的对象</span></span><br><span class="line"><span class="comment">//通过包名+类名</span></span><br><span class="line"><span class="comment">//最为常用的方式</span></span><br><span class="line"><span class="type">Class</span> <span class="variable">aClass</span> <span class="operator">=</span>Class.forName(<span class="string">&quot;Study_18_FanShe.HeiMaPro.DaiLi.ProxyUtil&quot;</span>);</span><br><span class="line">System.out.println(aClass);</span><br><span class="line"><span class="comment">//通过类名</span></span><br><span class="line"><span class="comment">//常用于：当做参数传递</span></span><br><span class="line"><span class="type">Class</span> <span class="variable">bClass</span> <span class="operator">=</span> ProxyUtil.class;</span><br><span class="line">System.out.println(bClass);</span><br><span class="line"><span class="comment">//通过对象</span></span><br><span class="line"><span class="comment">//当已经有这个类对象时，才可以用</span></span><br><span class="line"><span class="type">ProxyUtil</span> <span class="variable">proxyUtil</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ProxyUtil</span>();</span><br><span class="line">System.out.println(proxyUtil.getClass());</span><br></pre></td></tr></table></figure>
+
+<h5 id="获取构造方法的访问修饰符方式："><a href="#获取构造方法的访问修饰符方式：" class="headerlink" title="获取构造方法的访问修饰符方式："></a>获取构造方法的访问修饰符方式：</h5><p>eg：Study_18_FanShe\HeiMaPro\FanShe\FanShe2.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//getDeclaredConstructors获取多个构造方法</span></span><br><span class="line">    </span><br><span class="line">      Constructor[] conmax = fs.getDeclaredConstructors();</span><br><span class="line">      <span class="keyword">for</span> (Constructor constructor : conmax) &#123;</span><br><span class="line">          System.out.println(constructor);</span><br><span class="line">      &#125;</span><br><span class="line">	<span class="comment">//getDeclaredConstructor获取单个构造方法</span></span><br><span class="line">      <span class="type">Constructor</span> <span class="variable">con1</span> <span class="operator">=</span> fs.getDeclaredConstructor();</span><br><span class="line">      System.out.println(con1);</span><br><span class="line"><span class="comment">//getConstructor只能获取公共类</span></span><br><span class="line">      <span class="type">Constructor</span> <span class="variable">con2</span> <span class="operator">=</span> fs.getDeclaredConstructor(String.class);</span><br><span class="line">      System.out.println(con2);</span><br></pre></td></tr></table></figure>
+
+<p>通过反射设置文件</p>
+<p>eg：Study_18_FanShe.HeiMaPro.FanShe.Savainfo.ReflectDemo</p>
+<h4 id="反射的作用"><a href="#反射的作用" class="headerlink" title="反射的作用"></a>反射的作用</h4><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/%5Cimg%5Cimage-20231011141525556.png" alt="image-20231011141525556"></p>
+<p>反射的四大类 :Class类，Field(成员、属性)变量，Method(方法)类、Constructor(构造器)类。</p>
+<p>Field类：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. Field 是描述  成员的，可以获取成员的名称、类型、权限修饰符、和取成员的值，和设置成员的值，也可以暴力解封。</span><br><span class="line">2. 对private 修饰的方法（Method） 如果调用，也需要解封。setAccessible</span><br><span class="line">3. 判断一个class类是否属于某个类：isAssignableFrom(判断类型.class)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+<h4 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h4><p>eg: Studyshuangti\MyJava\day1\src\Study_18_FanShe\HeiMaPro\DaiLi</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/%5Cimg%5Cimage-20231010140041939.png" alt="image-20231010140041939"></p>
+<h5 id="Proxy类："><a href="#Proxy类：" class="headerlink" title="Proxy类："></a>Proxy类：</h5><p>java.lang.reflect.Proxy</p>
+<p>为对象产生代理对象的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">第一个参数是：指定类加载器</span><br><span class="line">第二个是：	指定接口</span><br><span class="line">第三个是：	指定代理要干什么</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title function_">newProxyInstance</span><span class="params">(ClassLoader loader,Class&lt;?&gt;[] interfaces,InvocationHandler h)</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://www.yukinoshita.love">L</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://www.yukinoshita.love/2023/09/02/Java/">http://www.yukinoshita.love/2023/09/02/Java/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://www.yukinoshita.love" target="_blank">Yukino</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://s2.loli.net/2023/04/08/DiUZoJGuthCc4xf.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/09/18/%E9%A3%9F%E7%94%A8%E6%96%B9%E6%B3%95/" title="食用方法"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/04/08/TnjZuQ65sbGpI12.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">食用方法</div></div></a></div><div class="next-post pull-right"><a href="/2023/07/08/hexo%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/" title="Hexo博客"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/04/08/TnjZuQ65sbGpI12.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Hexo博客</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/04/08/RS3KNP2x7T5fBup.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">L</div><div class="author-info__description">人是一个出生的孩子，他的力量，就是生长的力量</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://space.bilibili.com/13949381?spm_id_from=333.1007.0.0"><i></i><span>🛴前往我的bilibili...</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:1041433615@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><center>主域名：<br><a href="https://www.yukinoshita.love"><b><font color="#5ea6e5">yukinoshita.love</font></b></a>&nbsp;<br><a href="mailto:1041433615@qq.com">📬：<b><font color="#a591e0">1041433615@qq.com</font></b></a></center></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%87%8D%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">重要</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#java%E7%9A%84%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">java的项目结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-number">1.2.</span> <span class="toc-text">快捷键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%94%E8%AE%B0"><span class="toc-number">1.3.</span> <span class="toc-text">笔记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text">一、基础语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E3%80%81%E9%87%8D%E8%BD%BD%E3%80%81%E7%BB%A7%E6%89%BF"><span class="toc-number">1.4.1.</span> <span class="toc-text">0.构造方法、重载、继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%80%92%E5%BD%92"><span class="toc-number">1.4.2.</span> <span class="toc-text">1.递归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Object"><span class="toc-number">1.4.3.</span> <span class="toc-text">2.Object</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%A4%9A%E6%80%81"><span class="toc-number">1.4.4.</span> <span class="toc-text">3.多态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%8A%BD%E8%B1%A1%E7%B1%BB%EF%BC%88%E4%BF%AE%E9%A5%B0%E7%AC%A6-abstract%EF%BC%89"><span class="toc-number">1.4.5.</span> <span class="toc-text">4.抽象类（修饰符 abstract）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%8E%A5%E5%8F%A3%E7%B1%BB"><span class="toc-number">1.4.6.</span> <span class="toc-text">5.接口类</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">1.4.6.0.1.</span> <span class="toc-text">定义</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E7%B1%BB%E7%BB%A7%E6%89%BF-%E6%8E%A5%E5%8F%A3%E5%A4%9A%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.4.6.0.1.1.</span> <span class="toc-text">类继承+接口多实现</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E7%BB%A7%E6%89%BF"><span class="toc-number">1.4.6.0.1.2.</span> <span class="toc-text">接口继承</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%EF%BC%88%E5%B8%B8%E9%87%8F%EF%BC%89"><span class="toc-number">1.4.6.0.1.3.</span> <span class="toc-text">成员变量（常量）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.6.0.1.4.</span> <span class="toc-text">抽象方法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.6.0.1.5.</span> <span class="toc-text">默认方法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.6.0.1.6.</span> <span class="toc-text">静态方法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E7%A7%81%E6%9C%89%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.6.0.1.7.</span> <span class="toc-text">私有方法</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E5%B0%8F%E7%BB%93"><span class="toc-number">1.4.6.0.2.</span> <span class="toc-text">接口小结</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E8%A7%A3%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.4.6.1.</span> <span class="toc-text">注解详解</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%9E%9A%E4%B8%BE%E7%B1%BB"><span class="toc-number">1.4.7.</span> <span class="toc-text">6.枚举类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E6%95%B0%E7%BB%84"><span class="toc-number">1.4.8.</span> <span class="toc-text">7.数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E5%BC%82%E5%B8%B8"><span class="toc-number">1.4.9.</span> <span class="toc-text">8.异常</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%94%99%E8%AF%AF"><span class="toc-number">1.4.9.1.</span> <span class="toc-text">错误</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E5%BC%82%E5%B8%B8"><span class="toc-number">1.4.9.2.</span> <span class="toc-text">运行时异常</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%9E%E8%BF%90%E8%A1%8C%E6%97%B6%E5%BC%82%E5%B8%B8%EF%BC%88%E9%A2%84%E6%9C%9F%E5%BC%82%E5%B8%B8%EF%BC%89"><span class="toc-number">1.4.9.3.</span> <span class="toc-text">非运行时异常（预期异常）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E5%A4%84%E7%90%86%E5%BC%82%E5%B8%B8"><span class="toc-number">1.4.10.</span> <span class="toc-text">9.处理异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-%E5%86%85%E9%83%A8%E7%B1%BB"><span class="toc-number">1.4.11.</span> <span class="toc-text">10.内部类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E7%B1%BB%E5%88%9B%E5%BB%BA%E5%AE%9E%E4%BE%8B%E5%AF%B9%E8%B1%A1%E4%B8%8E%E4%BD%BF%E7%94%A8"><span class="toc-number">1.4.11.1.</span> <span class="toc-text">内部类创建实例对象与使用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.4.12.</span> <span class="toc-text">11.设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%B8%80%E4%B8%AA%E7%B1%BB%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%AE%9E%E4%BE%8B%EF%BC%89"><span class="toc-number">1.4.12.1.</span> <span class="toc-text">单例模式（一个类只有一个实例）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B7%A5%E5%8E%82%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.4.12.2.</span> <span class="toc-text">工厂设计模式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8C%85%E8%A3%85%E7%B1%BB%E5%92%8CString"><span class="toc-number">1.5.</span> <span class="toc-text">二、基本类型的包装类和String</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8C%85%E8%A3%85%E7%B1%BB"><span class="toc-number">1.5.1.</span> <span class="toc-text">1.包装类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-String"><span class="toc-number">1.5.2.</span> <span class="toc-text">2.String</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-StringBuffer%E5%92%8CStringBuilder"><span class="toc-number">1.5.3.</span> <span class="toc-text">3.StringBuffer和StringBuilder</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#StringBuffer"><span class="toc-number">1.5.3.1.</span> <span class="toc-text">StringBuffer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#StringBuilder"><span class="toc-number">1.5.3.2.</span> <span class="toc-text">StringBuilder</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.5.4.</span> <span class="toc-text">4.正则表达式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E7%B1%BB"><span class="toc-number">1.6.</span> <span class="toc-text">三、开发常用类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E9%9B%86%E5%90%88%E5%92%8C%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6"><span class="toc-number">1.7.</span> <span class="toc-text">四、集合和集合框架</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%9B%86%E5%90%88"><span class="toc-number">1.7.1.</span> <span class="toc-text">1.集合</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E7%9A%84%E6%A1%86%E6%9E%B6%E7%BB%93%E6%9E%84%E5%9B%BE"><span class="toc-number">1.7.1.1.</span> <span class="toc-text">集合的框架结构图</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%B3%9B%E5%9E%8B"><span class="toc-number">1.7.2.</span> <span class="toc-text">2.泛型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%B3%9B%E5%9E%8B%E7%9A%843%E4%B8%AA%E5%A3%B0%E6%98%8E%E6%96%B9%E5%BC%8F"><span class="toc-number">1.7.2.1.</span> <span class="toc-text">1.泛型的3个声明方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%8F%97%E9%99%90%E6%B3%9B%E5%9E%8B"><span class="toc-number">1.7.2.2.</span> <span class="toc-text">2.受限泛型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Arraylist"><span class="toc-number">1.7.2.3.</span> <span class="toc-text">3.Arraylist</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-LinkedList"><span class="toc-number">1.7.2.4.</span> <span class="toc-text">4.LinkedList</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E9%98%9F%E5%88%97%E5%92%8C%E6%A0%88"><span class="toc-number">1.7.2.4.1.</span> <span class="toc-text">1.队列和栈</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81Map%E5%92%8CSet%E6%8E%A5%E5%8F%A3%E5%8F%8A%E5%85%B6%E5%AE%9E%E7%8E%B0%E7%B1%BB"><span class="toc-number">1.8.</span> <span class="toc-text">五、Map和Set接口及其实现类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Map%E6%8E%A5%E5%8F%A3%E5%92%8C%E5%85%B6%E5%AE%9E%E7%8E%B0%E7%B1%BB"><span class="toc-number">1.8.1.</span> <span class="toc-text">1.Map接口和其实现类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Set%E6%8E%A5%E5%8F%A3%E5%92%8C%E5%AE%9E%E7%8E%B0%E7%B1%BB"><span class="toc-number">1.8.2.</span> <span class="toc-text">2.Set接口和实现类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-LinkHashSet"><span class="toc-number">1.8.2.1.</span> <span class="toc-text">1.LinkHashSet</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-TrreSet"><span class="toc-number">1.8.2.2.</span> <span class="toc-text">2.TrreSet</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Conllections%E5%B7%A5%E5%85%B7%E7%B1%BB-%E4%B8%8D%E6%98%AFConllection%E6%8E%A5%E5%8F%A3%EF%BC%81%EF%BC%81"><span class="toc-number">1.8.3.</span> <span class="toc-text">3.Conllections工具类(不是Conllection接口！！)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%96%87%E4%BB%B6%E5%92%8C%E5%AD%97%E7%AC%A6%E5%AD%97%E8%8A%82%E6%B5%81"><span class="toc-number">1.9.</span> <span class="toc-text">六、文件和字符字节流</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-IO-InputStream"><span class="toc-number">1.9.1.</span> <span class="toc-text">1.IO(InputStream)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%AD%97%E8%8A%82%E8%BE%93%E5%85%A5-%E5%87%BA-%E6%B5%81"><span class="toc-number">1.9.1.1.</span> <span class="toc-text">1.字节输入(出)流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%AD%97%E7%AC%A6%E8%BE%93%E5%85%A5-%E5%87%BA-%E6%B5%81"><span class="toc-number">1.9.1.2.</span> <span class="toc-text">2.字符输入(出)流</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%BD%AC%E6%8D%A2%E6%B5%81%E5%92%8C%E7%BC%93%E5%AD%98%E6%B5%81%E5%92%8C%E5%AF%B9%E8%B1%A1%E6%B5%81%EF%BC%88IO%E6%B5%81%E6%A1%86%E6%9E%B6%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%EF%BC%89%E9%87%8D%E8%A6%81"><span class="toc-number">1.9.2.</span> <span class="toc-text">2.转换流和缓存流和对象流（IO流框架底层原理）重要</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%BC%93%E5%AD%98%E6%B5%81"><span class="toc-number">1.9.3.</span> <span class="toc-text">1.缓存流</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%AD%97%E8%8A%82%E7%BC%93%E5%AD%98%E8%BE%93%E5%85%A5%EF%BC%88%E5%87%BA%EF%BC%89%E6%B5%81"><span class="toc-number">1.9.3.1.</span> <span class="toc-text">1.字节缓存输入（出）流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%AD%97%E7%AC%A6%E7%BC%93%E5%AD%98%E8%BE%93%E5%85%A5%EF%BC%88%E5%87%BA%EF%BC%89%E6%B5%81"><span class="toc-number">1.9.3.2.</span> <span class="toc-text">2.字符缓存输入（出）流</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%86%85%E5%AD%98%E6%B5%81"><span class="toc-number">1.9.4.</span> <span class="toc-text">2.内存流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Scanner%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7%E5%92%8C%E6%89%93%E5%8D%B0%E6%B5%81%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89"><span class="toc-number">1.9.5.</span> <span class="toc-text">3.Scanner扫描工具和打印流（重要）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%AF%B9%E8%B1%A1%E6%B5%81"><span class="toc-number">1.9.6.</span> <span class="toc-text">4.对象流</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">1.9.6.0.1.</span> <span class="toc-text">1.序列化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-RandoRandomAccessFile-%E4%BA%86%E8%A7%A3%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0"><span class="toc-number">1.9.7.</span> <span class="toc-text">5.RandoRandomAccessFile(了解断点续传)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-Properties%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.9.8.</span> <span class="toc-text">6.Properties设计模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80"><span class="toc-number">1.10.</span> <span class="toc-text">七、多线程基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.10.1.</span> <span class="toc-text">1.进程与线程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.10.1.1.</span> <span class="toc-text">1.进程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.10.1.2.</span> <span class="toc-text">2.线程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%844%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-number">1.10.1.3.</span> <span class="toc-text">3.创建线程的4种方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%B8%AD%E6%96%AD"><span class="toc-number">1.10.1.4.</span> <span class="toc-text">4.线程的中断</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E7%9A%84%E8%80%83%E7%82%B9%EF%BC%9A"><span class="toc-number">1.10.1.5.</span> <span class="toc-text">面试的考点：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="toc-number">1.10.2.</span> <span class="toc-text">2.多线程同步</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E5%8F%8D%E5%B0%84"><span class="toc-number">1.11.</span> <span class="toc-text">八、反射</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AD%E8%A8%80%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%BD%A2%E6%80%81"><span class="toc-number">1.11.0.1.</span> <span class="toc-text">语言的两种形态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E4%B8%8E%E5%8F%8D%E5%B0%84%EF%BC%9A"><span class="toc-number">1.11.0.2.</span> <span class="toc-text">类与反射：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E4%BD%BF%E7%94%A8%EF%BC%9A"><span class="toc-number">1.11.0.3.</span> <span class="toc-text">代码使用：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E7%9A%84%E4%B8%89%E7%A7%8D%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F"><span class="toc-number">1.11.0.3.1.</span> <span class="toc-text">反射的三种创建方式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E7%9A%84%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="toc-number">1.11.0.3.2.</span> <span class="toc-text">获取构造方法的访问修饰符方式：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">1.11.0.4.</span> <span class="toc-text">反射的作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="toc-number">1.11.0.5.</span> <span class="toc-text">动态代理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Proxy%E7%B1%BB%EF%BC%9A"><span class="toc-number">1.11.0.5.1.</span> <span class="toc-text">Proxy类：</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2023/04/08/DiUZoJGuthCc4xf.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By L</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><canvas id="snow"></canvas><script async src="../../js/snow.js"></script><canvas id="universe"></canvas><script defer src="../../js/universe.js"></script><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script defer data-pjax src="../../js/cat.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="http://www.yukinoshita.love/categories/Double-System/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 双体 (1)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://www.yukinoshita.love/categories/Game/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🎮 游戏 (1)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://www.yukinoshita.love/categories/FE/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🐱‍👓 前端知识 (2)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://www.yukinoshita.love/categories/Java/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">👩‍💻 Java知识 (8)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://www.yukinoshita.love/categories/Python/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📒 Python基础 (1)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://www.yukinoshita.love/categories/数据库/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">💡 MySQL (1)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><a class="magnet_link_more"  href="http://www.yukinoshita.love/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #b30070}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var qweather_key = 'a7179651f59a44bfb995cfd913592046';
+  var gaud_map_key = '18c3da7469da2d82938236b94454817e';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '113.34532,23.15624';
+  var clock_default_rectangle_enable = 'false';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><!-- hexo injector body_end end --></body></html>
